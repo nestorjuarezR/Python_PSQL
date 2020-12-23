@@ -1,3 +1,5 @@
+# Create by Néstor Juárez
+
 import psycopg2
 
 TABLE_CAKE = ''' CREATE TABLE pasteles(
@@ -11,9 +13,9 @@ TABLE_CAKE = ''' CREATE TABLE pasteles(
 def presentation():
     print('''
     <---------->
-    Bienvenido
+     Bienvenido
     <---------->
-    - Seleccione una opción:
+    -> Seleccione una opción:
     1.- Agregar Orden
     2.- Mostrar Ordenes
     3.- Eliminar Orden
@@ -62,7 +64,6 @@ def menu():
     user = 'nestorjr',
     password = '123456',
     dbname = 'pasteles')
-    print('<----- Conexion exitosa ----->')
 
     opcion = int(input('Ingrese el numero de la opcion seleccionada: '))
     with connection.cursor() as cursor:

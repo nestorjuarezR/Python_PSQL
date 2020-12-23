@@ -38,6 +38,7 @@ try:
     sql_insert = "INSERT INTO users (name, age, password) VALUES(%s, %s, %s)"
     sql_select = "SELECT * FROM users"  #SELECT name, age, password
     sql_update = "UPDATE users SET  name=%s, age=%s, password=%s WHERE id=%s"
+    sql_delete = "DELETE FROM users WHERE id=%s"
 
 
     with connection.cursor() as cursor:
@@ -49,7 +50,9 @@ try:
         cursor.execute(sql_select)
         for user in cursor.fetchall():
             print(user)
-        cursor.execute(sql_update, get_user_from_terminal_update())
+        #cursor.execute(sql_update, get_user_from_terminal_update())
+        id_user = int(input("ingrese el id del usuario a eliminar: "))
+        cursor.execute(sql_delete, (id_user,))
         connection.commit()
 
         print('<-- Usuarios actualizados -->')
