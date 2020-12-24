@@ -1,6 +1,6 @@
 import hashlib
-from db import connection
 import getpass
+
 
 class User:
     def __init__(self, name, age, password):
@@ -72,9 +72,9 @@ class UserDB:
         if user:
             query = "DELETE FROM users WHERE id = %s"
             cursor.execute(query, (id_user,))
-            print('Usuario eliminado con exito')
+            print('\nUsuario eliminado con exito\n')
         else:
-            print('El id que ingreso no existe en la base de datos')
+            print('\nEl id que ingreso no existe en la base de datos\n')
         cursor.close()
 
 
@@ -82,10 +82,12 @@ class UserDB:
     def list_users(cls,cursor):
         query = "SELECT id, name, age FROM users"
         cursor.execute(query)
-        print('<----- Usuarios Registrados ----->')
+        print('\n<----- Usuarios Registrados ----->\n')
         for id, name, age in cursor.fetchall():
-            print('| ID: {} | Nombre: {} | Edad: {} |'.format(id, name, age))
+            print('\n| ID: {} | Nombre: {} | Edad: {} |\n'.format(id, name, age))
         cursor.close()
+        print('<------------------------->')
+
 
 
     @classmethod
@@ -100,7 +102,7 @@ class UserDB:
             password = UserMethods.set_password(getpass.getpass('Ingrese la nueva contraseña del usuario: '))
             query = "UPDATE users  SET name = '{}', age = {}, password = '{}' WHERE id = {}".format(name, age, password, id_user)
             cursor.execute(query)
-            print('-> Usuario Actualizado con exito')
+            print('\n-> Usuario Actualizado con exito\n')
         else:
-            print('Ingrese un ID valido')
+            print('\nIngrese un ID valido\n')
         cursor.close()
