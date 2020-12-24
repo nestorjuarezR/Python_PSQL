@@ -1,5 +1,6 @@
 import psycopg2
 
+
 def connection():
     try:
         connection = psycopg2.connect(
@@ -13,6 +14,6 @@ def connection():
         <-------------------->''')
         return connection
     except psycopg2.Error as error:
-        print('Error en la conexion')
+        print('Error en la conexion:', error)
 
 connection()
